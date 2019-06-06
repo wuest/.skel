@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+fullwidth = ARGV.join(' ').chars
+  .map(&:ord)
+  .each_with_object(0xfee0)
+  .each_with_object(:+)
+  .map(&:reduce)
+  .pack('U*')
+  .gsub("\uff00", "\u3000")
+
+system "printf '#{fullwidth}' | xclip -sel clip"

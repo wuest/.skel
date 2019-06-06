@@ -1,0 +1,15 @@
+[user]
+	name       = Tina Wuest
+	email      = tina@wuest.me
+	signingkey = 0xd1de30be
+[core]
+	editor = vim
+[push]
+	default = simple
+[status]
+	submoduleSummary = true
+[color]
+	ui = true
+[commit]
+	gpgsign = true
+	verbose = true
