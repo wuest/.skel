@@ -2,7 +2,7 @@
 
 # For each file/directory in the top level of the skeleton directory move the
 # corresponding file in $HOME aside, appending '.backup' to its name, then
-# symlink the file from the current (.skeleton) directory to $HOME.
+# symlink the file from the current (.skel) directory to $HOME.
 #
 # Any file which meets either of the two criteria will be skipped:
 # * The target file is already a symlink
