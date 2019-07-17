@@ -186,6 +186,7 @@
 
 " Filetype settings {
     au BufNewFile,BufRead *.hsc    set filetype=haskell
+    au BufNewFile,BufRead *.rbi    set filetype=ruby
 
     " Make editing this file nice
     autocmd Filetype vim set foldmarker={,} foldlevel=0 foldmethod=marker expandtab shiftwidth=4 tabstop=4
