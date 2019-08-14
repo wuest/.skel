@@ -11,7 +11,7 @@ export WINEDEBUG=-all
 export WINEARCH=win32
 
 # GPG agent setup
-if [[ -f "/run/user/${UID}/gnupg/S.gpg-agent.ssh" ]]; then
+if [[ -S "/run/user/${UID}/gnupg/S.gpg-agent.ssh" ]]; then
 	if ! pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
 		gpg-connect-agent /bye >/dev/null 2>&1
 	fi
