@@ -24,9 +24,9 @@ fi
 alias ls='ls --color=auto'
 export PS1='[\u@\h \W]\$ '
 
-# Add RVM to PATH
-if [[ -d "${HOME}/.rvm/bin" ]]; then
-	export PATH="${PATH}:${HOME}/.rvm/bin"
+# Add local bin to PATH
+if [[ -d "${HOME}/bin" ]]; then
+	export PATH="${PATH}:${HOME}/bin"
 fi
 
 # Add most-recently installed Stack-managed Haskell to PATH
@@ -42,6 +42,11 @@ fi
 # Add yarn-managed files to PATH (primarily for elm)
 if [[ -d "${HOME}/.yarn/bin" ]]; then
 	export PATH="${HOME}/.yarn/bin:${PATH}"
+fi
+
+# Add RVM to PATH
+if [[ -d "${HOME}/.rvm/bin" ]]; then
+	export PATH="${PATH}:${HOME}/.rvm/bin"
 fi
 
 # Pull in host-specific variables if applicable
