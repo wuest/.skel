@@ -6,6 +6,7 @@
 " Basic {
     " Use a minimalistic interface
     set guioptions=ac
+    set guifont=PragmataPro
 
     " Give a larger interface by default
     set lines=55 columns=100
