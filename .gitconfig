@@ -1,7 +1,7 @@
 [user]
 	name       = Tina Wuest
 	email      = tina@wuest.me
-	signingkey = 0xd1de30be
+	signingkey = 0x38ffc0c0
 [core]
 	editor = vim
 [push]
