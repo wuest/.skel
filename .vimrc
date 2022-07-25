@@ -51,6 +51,8 @@
         Bundle 'wesgibbs/vim-irblack'
 
         " Vim functionality plugins
+        let g:snipMate = { 'snippet_version' : 1 }
+
 		Bundle 'scrooloose/syntastic'
 		Bundle 'ctrlpvim/ctrlp.vim'
 		Bundle 'tomtom/tlib_vim'
