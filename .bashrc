@@ -8,7 +8,7 @@
 
 export VISUAL=vim
 export WINEDEBUG=-all
-export WINEARCH=win32
+export WINEARCH=win64
 
 # GPG agent setup
 if [[ -S "/run/user/${UID}/gnupg/S.gpg-agent.ssh" ]]; then
@@ -21,7 +21,14 @@ if [[ -S "/run/user/${UID}/gnupg/S.gpg-agent.ssh" ]]; then
 	fi
 fi
 
+numcpu=`lscpu|grep '^CPU(s): *'|awk '{print $2}'`
+if [[ ! -z "${numcpu}" ]]; then
+	alias make="make -j${numcpu}"
+	export CMAKE_BUILD_PARALLEL_LEVEL="${numcpu}"
+fi
+
 alias ls='ls --color=auto'
+alias rebar='rebar3'
 export PS1='[\u@\h \W]\$ '
 
 # Add local bin to PATH
@@ -29,10 +36,16 @@ if [[ -d "${HOME}/bin" ]]; then
 	export PATH="${PATH}:${HOME}/bin"
 fi
 
+if [[ -d "${HOME}/.local/bin" ]]; then
+	export PATH="${HOME}/.local/bin:${PATH}"
+fi
+
 # Add most-recently installed Stack-managed Haskell to PATH
-stacklocation=$(find "${HOME}/.stack/programs/$(uname -m)-$(uname -s|tr 'A-Z' 'a-z')/" -maxdepth 2 -mindepth 2 -type d -name 'bin' | tail -1)
-if [[ -d "${stacklocation}" ]]; then
-	export PATH="${stacklocation}:${PATH}"
+if [[ -d "${HOME}/.stack/programs/$(uname -m)-$(uname -s|tr 'A-Z' 'a-z')/" ]]; then
+	stacklocation=$(find "${HOME}/.stack/programs/$(uname -m)-$(uname -s|tr 'A-Z' 'a-z')/" -maxdepth 2 -mindepth 2 -type d -name 'bin' | tail -1)
+	if [[ -d "${stacklocation}" ]]; then
+		export PATH="${stacklocation}:${PATH}"
+	fi
 fi
 
 if [[ -d "${HOME}/.cabal/bin" ]]; then

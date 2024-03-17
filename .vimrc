@@ -46,20 +46,24 @@
         " Let Vundle manage itself
         Bundle 'gmarik/vundle'
 
+        " Wayland clipboard
+        Bundle "jasonccox/vim-wayland-clipboard"
+
         " Colorschemes collections (Molokai/irblack)
         Bundle 'flazz/vim-colorschemes'
         Bundle 'wesgibbs/vim-irblack'
 
         " Vim functionality plugins
-        let g:snipMate = { 'snippet_version' : 1 }
+        Bundle 'dense-analysis/ale'
+        let g:ale_c_parse_compile_commands=1
 
-		Bundle 'scrooloose/syntastic'
-		Bundle 'ctrlpvim/ctrlp.vim'
-		Bundle 'tomtom/tlib_vim'
-		Bundle 'MarcWeber/vim-addon-mw-utils'
-		Bundle 'garbas/vim-snipmate'
-		Bundle 'scrooloose/nerdtree'
-		Bundle 'scrooloose/nerdcommenter'
+        Bundle 'ctrlpvim/ctrlp.vim'
+        Bundle 'tomtom/tlib_vim'
+        Bundle 'MarcWeber/vim-addon-mw-utils'
+        Bundle 'garbas/vim-snipmate'
+        Bundle 'scrooloose/nerdtree'
+        Bundle 'scrooloose/nerdcommenter'
+        Bundle 'preservim/tagbar'
 
         " Add Erlang/Elixir Language support
         Bundle 'vim-erlang/vim-erlang-runtime.git'
@@ -76,6 +80,9 @@
 
         " Elm support
         Bundle 'ElmCast/elm-vim'
+
+        " Rust support
+        Bundle 'rust-lang/rust.vim'
 
         let $PYTHONPATH='/usr/lib/python3.7/site-packages'
         " Airline provides a nice status line
@@ -110,6 +117,9 @@
     " Turn auto-indentation on, but be smart about it
     set autoindent
     set smartindent
+
+    " Set snip source to remove warning
+    let g:snipMate = { 'snippet_version' : 1 }
 " }
 
 " UI {
@@ -189,6 +199,7 @@
 " Filetype settings {
     au BufNewFile,BufRead *.hsc    set filetype=haskell
     au BufNewFile,BufRead *.rbi    set filetype=ruby
+    au BufNewFile,BufRead *.rbs    set filetype=ruby
 
     " Make editing this file nice
     autocmd Filetype vim set foldmarker={,} foldlevel=0 foldmethod=marker expandtab shiftwidth=4 tabstop=4
@@ -210,6 +221,10 @@
     map <Leader>f :NERDTreeToggle<CR>
     let NERDTreeQuitOnOpen=1
 " }
+"
+" Tagbar {
+    map <F8> :TagbarToggle<CR>
+" }
 
 " Overrides {
     " These get put at the end of vimrc to guarantee it always takes effect
@@ -223,6 +238,9 @@
     if filereadable(expand("~/.vimrc-local"))
         source ~/.vimrc-local
     endif
+
+    " ALE linter Overrides
+    let g:ale_linters_ignore = [ 'ghc' ]
 " }
 
 function! Co()
