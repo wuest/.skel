@@ -63,7 +63,7 @@
         Bundle 'garbas/vim-snipmate'
         Bundle 'scrooloose/nerdtree'
         Bundle 'scrooloose/nerdcommenter'
-        Bundle 'preservim/tagbar'
+        " Bundle 'preservim/tagbar'
 
         " Add Erlang/Elixir Language support
         Bundle 'vim-erlang/vim-erlang-runtime.git'
@@ -79,12 +79,15 @@
         Bundle 'neovimhaskell/haskell-vim'
 
         " Elm support
-        Bundle 'ElmCast/elm-vim'
+        " Bundle 'ElmCast/elm-vim'
 
         " Rust support
         Bundle 'rust-lang/rust.vim'
 
-        let $PYTHONPATH='/usr/lib/python3.7/site-packages'
+        " Ruby support
+        Bundle 'jlcrochet/vim-rbs'
+
+        let $PYTHONPATH='/usr/lib/python3.11/site-packages'
         " Airline provides a nice status line
         Bundle 'bling/vim-airline'
         let g:airline_powerline_fonts=1
@@ -199,7 +202,6 @@
 " Filetype settings {
     au BufNewFile,BufRead *.hsc    set filetype=haskell
     au BufNewFile,BufRead *.rbi    set filetype=ruby
-    au BufNewFile,BufRead *.rbs    set filetype=ruby
 
     " Make editing this file nice
     autocmd Filetype vim set foldmarker={,} foldlevel=0 foldmethod=marker expandtab shiftwidth=4 tabstop=4
@@ -232,7 +234,7 @@
     syntax on
 
     "  Set the column count warning to something easier on the eyes
-    hi ColorColumn ctermbg=DarkBlue
+    hi ColorColumn ctermbg=gray
 
     " Optionally load local configuration
     if filereadable(expand("~/.vimrc-local"))
