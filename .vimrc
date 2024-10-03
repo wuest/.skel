@@ -52,9 +52,12 @@
         " Colorschemes collections (Molokai/irblack)
         Bundle 'flazz/vim-colorschemes'
         Bundle 'wesgibbs/vim-irblack'
+        Bundle 'theacodes/witchhazel'
 
         " Vim functionality plugins
         Bundle 'dense-analysis/ale'
+        let g:ale_c_always_make=1
+        let g:ale_c_parse_makefile=1
         let g:ale_c_parse_compile_commands=1
 
         Bundle 'ctrlpvim/ctrlp.vim'
@@ -126,8 +129,12 @@
 " }
 
 " UI {
-    " Set colorscheme to ir_black (installed by vundle)
-    colorscheme ir_black
+    " Set colorscheme to witchhazel (installed by vundle)
+    colorscheme witchhazel
+    " Required by witchhazel
+    set termguicolors
+    set background=dark
+    set t_Co=256
 
     " Incremental search, highlight matches
     set hlsearch
@@ -223,7 +230,7 @@
     map <Leader>f :NERDTreeToggle<CR>
     let NERDTreeQuitOnOpen=1
 " }
-"
+
 " Tagbar {
     map <F8> :TagbarToggle<CR>
 " }
@@ -243,6 +250,7 @@
 
     " ALE linter Overrides
     let g:ale_linters_ignore = [ 'ghc' ]
+    let g:ale_linters = { 'cpp': [ ] }
 " }
 
 function! Co()
