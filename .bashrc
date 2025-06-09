@@ -1,14 +1,31 @@
 #
-# ~/.bashrc
+# ~/.bashrc - base config; automatically messed with by ghcup, rvm, etc
 #
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 [[ -z $TMUX ]] && tmux
 
-export VISUAL=vim
-export WINEDEBUG=-all
-export WINEARCH=win64
+alias ls='ls --color=auto'
+export PS1='[\u@\h \W]\$ '
+
+# Add local bin to PATH
+if [[ -d "${HOME}/bin" ]]; then
+	export PATH="${PATH}:${HOME}/bin"
+fi
+if [[ -d "${HOME}/.local/bin" ]]; then
+	export PATH="${HOME}/.local/bin:${PATH}"
+fi
+
+# Run local configuration
+if [[ -f "${HOME}/.bash_local" ]]; then
+	. "${HOME}/.bash_local"
+fi
+
+# Pull in host-specific variables if applicable
+if [[ -f "${HOME}/.bash_vars" ]]; then
+	. "${HOME}/.bash_vars"
+fi
 
 # GPG agent setup
 if [[ -S "/run/user/${UID}/gnupg/S.gpg-agent.ssh" ]]; then
@@ -21,48 +38,12 @@ if [[ -S "/run/user/${UID}/gnupg/S.gpg-agent.ssh" ]]; then
 	fi
 fi
 
-numcpu=`lscpu|grep '^CPU(s): *'|awk '{print $2}'`
-if [[ ! -z "${numcpu}" ]]; then
-	alias make="make -j${numcpu}"
-	export CMAKE_BUILD_PARALLEL_LEVEL="${numcpu}"
-fi
-
-alias ls='ls --color=auto'
-alias rebar='rebar3'
-export PS1='[\u@\h \W]\$ '
-
-# Add local bin to PATH
-if [[ -d "${HOME}/bin" ]]; then
-	export PATH="${PATH}:${HOME}/bin"
-fi
-
-if [[ -d "${HOME}/.local/bin" ]]; then
-	export PATH="${HOME}/.local/bin:${PATH}"
-fi
-
-# Add most-recently installed Stack-managed Haskell to PATH
-if [[ -d "${HOME}/.stack/programs/$(uname -m)-$(uname -s|tr 'A-Z' 'a-z')/" ]]; then
-	stacklocation=$(find "${HOME}/.stack/programs/$(uname -m)-$(uname -s|tr 'A-Z' 'a-z')/" -maxdepth 2 -mindepth 2 -type d -name 'bin' | tail -1)
-	if [[ -d "${stacklocation}" ]]; then
-		export PATH="${stacklocation}:${PATH}"
-	fi
-fi
-
-if [[ -d "${HOME}/.cabal/bin" ]]; then
-	export PATH="${HOME}/.cabal/bin:${PATH}"
-fi
-
-# Add yarn-managed files to PATH (primarily for elm)
 if [[ -d "${HOME}/.yarn/bin" ]]; then
-	export PATH="${HOME}/.yarn/bin:${PATH}"
+  export PATH="${PATH}:${HOME}/.yarn/bin"
 fi
 
-# Add RVM to PATH
-if [[ -d "${HOME}/.rvm/bin" ]]; then
-	export PATH="${PATH}:${HOME}/.rvm/bin"
+if [[ -d "${HOME}/.cargo/bin" ]]; then
+  export PATH="${PATH}:${HOME}/.cargo/bin"
 fi
 
-# Pull in host-specific variables if applicable
-if [[ -f "${HOME}/.bash_vars" ]]; then
-	. "${HOME}/.bash_vars"
-fi
+[ -f "/home/wuest/.ghcup/env" ] && . "/home/wuest/.ghcup/env" # ghcup-env

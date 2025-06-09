@@ -46,54 +46,11 @@
         " Let Vundle manage itself
         Bundle 'gmarik/vundle'
 
-        " Wayland clipboard
-        Bundle "jasonccox/vim-wayland-clipboard"
-
-        " Colorschemes collections (Molokai/irblack)
-        Bundle 'flazz/vim-colorschemes'
-        Bundle 'wesgibbs/vim-irblack'
-        Bundle 'theacodes/witchhazel'
-
-        " Vim functionality plugins
-        Bundle 'dense-analysis/ale'
-        let g:ale_c_always_make=1
-        let g:ale_c_parse_makefile=1
-        let g:ale_c_parse_compile_commands=1
-
-        Bundle 'ctrlpvim/ctrlp.vim'
-        Bundle 'tomtom/tlib_vim'
-        Bundle 'MarcWeber/vim-addon-mw-utils'
-        Bundle 'garbas/vim-snipmate'
-        Bundle 'scrooloose/nerdtree'
-        Bundle 'scrooloose/nerdcommenter'
-        " Bundle 'preservim/tagbar'
-
-        " Add Erlang/Elixir Language support
-        Bundle 'vim-erlang/vim-erlang-runtime.git'
-        Bundle 'vim-erlang/vim-erlang-compiler.git'
-        Bundle 'vim-erlang/vim-erlang-omnicomplete.git'
-        Bundle 'vim-erlang/vim-erlang-tags.git'
-        Bundle 'elixir-lang/vim-elixir'
-
-        " Racket support
-        Bundle 'wlangstroth/vim-racket'
-
-        " Haskell support
-        Bundle 'neovimhaskell/haskell-vim'
-
-        " Elm support
-        " Bundle 'ElmCast/elm-vim'
-
-        " Rust support
-        Bundle 'rust-lang/rust.vim'
-
-        " Ruby support
-        Bundle 'jlcrochet/vim-rbs'
-
         let $PYTHONPATH='/usr/lib/python3.11/site-packages'
         " Airline provides a nice status line
         Bundle 'bling/vim-airline'
         let g:airline_powerline_fonts=1
+        let g:airline_theme='catppuccin_mocha'
     endif " }
 " }
 
@@ -123,15 +80,12 @@
     " Turn auto-indentation on, but be smart about it
     set autoindent
     set smartindent
-
-    " Set snip source to remove warning
-    let g:snipMate = { 'snippet_version' : 1 }
 " }
 
 " UI {
-    " Set colorscheme to witchhazel (installed by vundle)
-    colorscheme witchhazel
-    " Required by witchhazel
+    " Set colorscheme to catppuccin_mocha (manually installed)
+    colorscheme catppuccin_mocha
+
     set termguicolors
     set background=dark
     set t_Co=256
@@ -218,7 +172,7 @@
     autocmd Filetype javascript    set shiftwidth=2 tabstop=2 expandtab
     autocmd Filetype erlang        set shiftwidth=4 tabstop=4 expandtab
     autocmd Filetype python        set shiftwidth=4 tabstop=4 expandtab
-    autocmd Filetype c,cpp         set shiftwidth=4 tabstop=4 foldlevel=0
+    autocmd Filetype c,cpp         set shiftwidth=4 tabstop=4 foldlevel=0 expandtab
     autocmd Filetype html,xml      set shiftwidth=1 tabstop=1 expandtab
     autocmd Filetype eruby         set shiftwidth=1 tabstop=1 expandtab
     autocmd Filetype tex,plaintex  set shiftwidth=2 tabstop=2 expandtab wrap lbr
@@ -226,31 +180,15 @@
     autocmd Filetype haskell,cabal set shiftwidth=4 tabstop=4 shiftwidth=4 expandtab shiftround
 " }
 
-" Nerdtree {
-    map <Leader>f :NERDTreeToggle<CR>
-    let NERDTreeQuitOnOpen=1
-" }
-
-" Tagbar {
-    map <F8> :TagbarToggle<CR>
-" }
-
 " Overrides {
     " These get put at the end of vimrc to guarantee it always takes effect
     " Make sure syntax highlighting is always enabled
     syntax on
 
-    "  Set the column count warning to something easier on the eyes
-    hi ColorColumn ctermbg=gray
-
     " Optionally load local configuration
     if filereadable(expand("~/.vimrc-local"))
         source ~/.vimrc-local
     endif
-
-    " ALE linter Overrides
-    let g:ale_linters_ignore = [ 'ghc' ]
-    let g:ale_linters = { 'cpp': [ ] }
 " }
 
 function! Co()
