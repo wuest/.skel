@@ -16,11 +16,16 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     lazy = false,
-    branch = "main",
     build = ":TSUpdate",
   },
 
   { "neovim/nvim-lspconfig" },
+
+  {
+    "saghen/blink.cmp",
+    dependencies = { "rafamadriz/friendly-snippets" },
+    version = "1.*",
+  }
 }
 
 require("lazy").setup(plugins)

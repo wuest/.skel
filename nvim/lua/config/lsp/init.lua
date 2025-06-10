@@ -104,3 +104,22 @@ vim.lsp.enable("rust_analyzer")
 
 -- Tag generation
 vim.lsp.enable("ttags")
+
+-- Set keymaps for LSP functions
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('my.lsp', {}),
+  callback = function(args)
+    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+    if client:supports_method('textDocument/declaration') then
+      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
+    end
+
+    if client:supports_method('textDocument/definition') then
+      vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+    end
+
+    if client:supports_method('textDocument/implementation') then
+      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
+    end
+  end,
+})
