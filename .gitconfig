@@ -4,6 +4,7 @@
 	signingkey = 0x38ffc0c0
 [core]
 	editor = vim
+	excludesFile = ~/.gitignore
 [push]
 	default = simple
 [pull]
