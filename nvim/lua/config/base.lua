@@ -46,6 +46,7 @@ if not (vim.uv or vim.loop).fs_stat(basepath .. "/tmp") then
   vim.fn.system({ "mkdir", "-p", basepath .. "/tmp" })
 end
 vim.opt.backup = true
+vim.opt.swapfile = true
 vim.opt.backupdir = basepath .. "/backup"
 vim.opt.directory = basepath .. "/tmp"
 
@@ -58,6 +59,7 @@ vim.opt.errorbells = false
 -- Turn auto-indentation on, but be smart
 vim.opt.autoindent = true
 vim.opt.smartindent = true
+vim.opt.cindent = true
 
 --
 -- UI
@@ -126,3 +128,8 @@ vim.opt.listchars = {
   tab = "▸ ",
   trail = "·",
 }
+
+-- Folding
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.wo.foldlevel=1

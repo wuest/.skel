@@ -25,7 +25,11 @@ local plugins = {
     "saghen/blink.cmp",
     dependencies = { "rafamadriz/friendly-snippets" },
     version = "1.*",
-  }
+  },
+
+  {
+    "RRethy/nvim-treesitter-endwise",
+  },
 }
 
 require("lazy").setup(plugins)
