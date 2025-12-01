@@ -1,7 +1,7 @@
 [user]
 	name       = Tina Wuest
 	email      = tina@wuest.me
-	signingkey = 0x38ffc0c0
+	signingkey = 0x028220d2
 [core]
 	editor = vim
 	excludesFile = ~/.gitignore
