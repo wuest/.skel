@@ -130,6 +130,6 @@ vim.opt.listchars = {
 }
 
 -- Folding
-vim.wo.foldmethod = 'expr'
+vim.wo.foldmethod = 'syntax'
 vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.wo.foldlevel=1
