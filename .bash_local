@@ -2,16 +2,6 @@
 # ~/.bash_local - workstation-dependent configuration
 #
 
-export GVIM_ENABLE_WAYLAND=1
-export GSK_RENDERER=ngl
-export VISUAL=vim
-
-numcpu=`lscpu|grep '^CPU(s): *'|awk '{print $2}'`
-if [[ ! -z "${numcpu}" ]]; then
-	alias make="make -j${numcpu}"
-	export CMAKE_BUILD_PARALLEL_LEVEL="${numcpu}"
-fi
-
 alias rebar="rebar3"
 
 `which nvim >/dev/null 2>/dev/null`
