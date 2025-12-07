@@ -22,3 +22,4 @@ require("nvim-treesitter.configs").setup({
 vim.cmd.colorscheme("catppuccin-mocha")
 
 require("config.lsp")
+require("config.keymap")
