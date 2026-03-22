@@ -2,7 +2,9 @@
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 
 vim.lsp.config("*", {
-  root_markers = { ".git" },
+  root_markers = {
+    ".git",
+  },
 })
 
 vim.diagnostic.config({
