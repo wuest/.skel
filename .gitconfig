@@ -1,22 +1,22 @@
 [user]
-	name       = Tina Wuest
-	email      = tina@wuest.me
-	signingkey = 0x028220d2
+  name       = Tina Wuest
+  email      = tina@wuest.me
+  signingkey = 0x028220d2
 [core]
-	editor = vim
-	excludesFile = ~/.gitignore
+  editor = vim
+  excludesFile = ~/.gitignore
 [push]
-	default = simple
+  default = simple
 [pull]
-	rebase = merges
+  rebase = merges
 [status]
-	submoduleSummary = true
+  submoduleSummary = true
 [color]
-	ui = true
+  ui = true
 [diff]
-	submodule = log
+  submodule = log
 [commit]
-	gpgsign = true
-	verbose = true
+  gpgsign = true
+  verbose = true
 [init]
-	defaultBranch = main
+  defaultBranch = main
