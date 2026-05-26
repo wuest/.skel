@@ -11,6 +11,9 @@ vim.diagnostic.config({
   virtual_text = true,
 })
 
+-- Agda
+vim.lsp.enable("agda_ls")
+
 -- Bash
 vim.lsp.enable("bashls")
 
@@ -40,6 +43,9 @@ vim.lsp.enable("hls")
 
 -- HTML
 vim.lsp.enable("html")
+
+-- Idris 2
+vim.lsp.enable("idris2_lsp")
 
 -- Lua
 vim.lsp.config('lua_ls', {
@@ -96,10 +102,7 @@ vim.lsp.enable("lua_ls")
 vim.lsp.enable('racket_langserver')
 
 -- Ruby
-vim.lsp.enable("rubocop")
 vim.lsp.enable("ruby_lsp")
-vim.lsp.enable("sorbet")
-vim.lsp.enable("typeprof")
 
 -- Rust
 vim.lsp.enable("rust_analyzer")

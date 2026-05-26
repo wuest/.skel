@@ -10,6 +10,36 @@ local plugins = {
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
   {
+    "isovector/cornelis",
+    ft = { "agda" },
+    build = "stack build",
+    dependencies = {
+      "kana/vim-textobj-user",
+      "neovimhaskell/nvim-hs.vim",
+    },
+    init = function()
+      vim.g.mapleader = '\\'
+      vim.g.maplocalleader = '\\'
+
+      vim.keymap.set("n", "<leader>l", "<Cmd>CornelisLoad<CR><Cmd>CornelisQuestionToMeta<CR>", { buffer = 0 })
+      vim.keymap.set("n", "<leader>r", "<Cmd>CornelisRefine<CR>", { buffer = 0 })
+      vim.keymap.set("n", "<leader>d", "<Cmd>CornelisMakeCase<CR>", { buffer = 0 })
+      vim.keymap.set("n", "<leader>,", "<Cmd>CornelisTypeContext<CR>", { buffer = 0 })
+      vim.keymap.set("n", "<leader>.", "<Cmd>CornelisTypeContextInfer<CR>", { buffer = 0 })
+      vim.keymap.set("n", "<leader>n", "<Cmd>CornelisSolve<CR>", { buffer = 0 })
+      vim.keymap.set("n", "<leader>a", "<Cmd>CornelisAuto<CR>", { buffer = 0 })
+      vim.keymap.set("n", "gd",        "<Cmd>CornelisGoToDefinition<CR>", { buffer = 0 })
+      vim.keymap.set("n", "[/",        "<Cmd>CornelisPrevGoal<CR>", { buffer = 0 })
+      vim.keymap.set("n", "]/",        "<Cmd>CornelisNextGoal<CR>", { buffer = 0 })
+      vim.keymap.set("n", "<C-A>",     "<Cmd>CornelisInc<CR>", { buffer = 0 })
+      vim.keymap.set("n", "<C-X>",     "<Cmd>CornelisDec<CR>", { buffer = 0 })
+      vim.keymap.set("n", "<C-space>", "<Cmd>CornelisGive<CR>", { buffer = 0 })
+
+      vim.g.cornelis_split_location = "bottom"
+    end,
+  },
+
+  {
     "nvim-treesitter/nvim-treesitter",
     lazy = false,
     build = ":TSUpdate",

@@ -33,7 +33,7 @@ for I in $(git ls-files bin); do
             printf "${RED}${HOME}/bin/${TARGET} exists!${RESET} Backing up as ${BLUE}${HOME}/bin/${TARGET}.backup${RESET}\n"
             mv "${HOME}/bin/${TARGET}" "${HOME}/bin/${TARGET}.backup"
         fi
-	      ln -s "${BASEDIR}/bin/${TARGET}" "${HOME}/bin/${TARGET}"
+        ln -s "${BASEDIR}/bin/${TARGET}" "${HOME}/bin/${TARGET}"
     fi
 done
 
@@ -49,7 +49,7 @@ for I in $(git ls-files .* | grep -v ".gitignore"); do
             printf "${RED}${HOME}/${TARGET} exists!${RESET} Backing up as ${BLUE}${HOME}/${TARGET}.backup${RESET}\n"
             mv "${HOME}/${TARGET}" "${HOME}/${TARGET}.backup"
         fi
-	      ln -s "${BASEDIR}/${TARGET}" "${HOME}/${TARGET}"
+        ln -s "${BASEDIR}/${TARGET}" "${HOME}/${TARGET}"
     fi
 done
 
@@ -66,40 +66,19 @@ touch "${HOME}/.bash_vars"
 
 popd || exit
 
-if ! eval "$(which gchup) -h"; then
-    printf "${RED}ghcup not found${RESET}\n"
-    echo "ghcup info can be found at: https://www.haskell.org/ghcup/install/"
-    echo "Preparing to run the following command:"
-    echo " -  curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
-    curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
-fi
-
-if ! eval "$(which rvm) -h" && ! eval "$(which rbenv) -h"; then
-    printf "${RED}rvm not found${RESET}\n"
-    echo "rvm info can be found at: https://rvm.io/rvm/install"
-    echo "Preparing to run the following commands:"
-    echo " -  gpg2 --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB"
-    echo " -  curl -sSL https://get.rvm.io | bash -s --ruby"
-    gpg2 --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-    curl -sSL https://get.rvm.io | bash -s stable
-fi
-
-if ! eval "$(which elm)"; then
-    printf "${RED}elm not found${RESET}\n"
-    echo "Preparing to run the following commands:"
-    echo " -  yarn global add elm"
-    yarn global add elm
-fi
-
 # Install nvim plugins
 nvim +qall
 
 # Setup legacy vim environment
-mkdir -p $HOME/.vim/{backup,tmp,colors}
+mkdir -p "${HOME}"/.vim/{backup,tmp,colors}
 git clone https://github.com/gmarik/vundle.git "${HOME}/.vim/bundle/vundle"
 git clone https://github.com/catppuccin/vim "${HOME}/.vim/catppuccin"
 ln -sf "${HOME}/.vim/catppuccin/colors/catppuccin_mocha.vim" "${HOME}/.vim/colors/catppuccin_mocha.vim"
 vim -e +BundleInstall +qall
+
 if [[ -d "${HOME}/.vim/bundle/vim-airline/autoload/airline/themes" ]]; then
     ln -sf "${HOME}/.vim/catppuccin/autoload/airline/themes/catppuccin_mocha.vim" "${HOME}/.vim/bundle/vim-airline/autoload/airline/themes/catppuccin_mocha.vim"
 fi
+
+echo "Setup complete, run install_langs.sh to install language support"
+echo
