@@ -46,4 +46,4 @@ if [[ -d "${HOME}/.cargo/bin" ]]; then
   export PATH="${PATH}:${HOME}/.cargo/bin"
 fi
 
-[ -f "/home/wuest/.ghcup/env" ] && . "/home/wuest/.ghcup/env" # ghcup-env
+[ -f "${HOME}/.ghcup/env" ] && . "${HOME}/.ghcup/env" # ghcup-env
